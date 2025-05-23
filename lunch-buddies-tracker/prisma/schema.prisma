@@ -14,16 +14,16 @@ datasource db {
     url      = env("DATABASE_URL")
 }
 
-model Post {
-    id        Int      @id @default(autoincrement())
-    name      String
-    createdAt DateTime @default(now())
-    updatedAt DateTime @updatedAt
 
-    createdBy   User   @relation(fields: [createdById], references: [id])
-    createdById String
+model LunchInvite {
+    id                      String @id @default(cuid())
+    senderId                String
+    receiverId              String
+    status                  String //pending, sent, accepted, done
+    date                    DateTime //time OF meeting
+    sender  User    @relation("SentInvites", fields: [senderId], references: [id])
+    receiver    User    @relation("ReceivedInvites", fields: [receiverId], references: [id])
 
-    @@index([name])
 }
 
 // Necessary for Next auth
@@ -62,7 +62,11 @@ model User {
     image         String?
     accounts      Account[]
     sessions      Session[]
-    posts         Post[]
+
+    points Int @default(0)
+
+    invitesSent              LunchInvite[] @relation("SentInvites")
+    invitesReceived          LunchInvite[] @relation("ReceivedInvites")
 }
 
 model VerificationToken {
