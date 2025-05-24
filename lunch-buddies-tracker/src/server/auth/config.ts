@@ -26,6 +26,10 @@ export const authOptions: NextAuthOptions = {
         },
       },
       from: process.env.EMAIL_FROM!,
+      async sendVerificationRequest({ identifier, url }) {
+        console.log("📧 Sending email to:", identifier);
+        console.log("🔗 Verification URL:", url);
+      },
     }),
   ],
   pages: {
