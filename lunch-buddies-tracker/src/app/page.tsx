@@ -22,6 +22,7 @@ export default async function Home() {
         <Link href="/leaderboard" className="text-blue-600 underline">
           View Leaderboard
         </Link>
+        <Link href="/invites" className="text-blue-600 underline">Invite someone to lunch!</Link>
       </div>
     </main>
   );
