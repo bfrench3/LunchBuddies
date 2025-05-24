@@ -1,7 +1,7 @@
 import type { Session } from "next-auth";
 import { getServerSession } from "next-auth/next";
 import { authOptions } from "~/server/auth/config";
-
+import Link from "next/link";
 
 export default async function Home() {
   //session gets authOptions from auth/config.ts using imported function from next
@@ -19,6 +19,9 @@ export default async function Home() {
         ) : (
           <a href="/signin">Sign in</a>
         )}
+        <Link href="/leaderboard" className="text-blue-600 underline">
+          View Leaderboard
+        </Link>
       </div>
     </main>
   );
