@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from "react";
-
+import Link from "next/link";
 export default function () {
     const [invitee, setInvitee] = useState('');
     const [eventDate, seteventDate] = useState('');
@@ -9,6 +9,7 @@ export default function () {
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+        //update this when email is working
         console.log("Invitee:", invitee);
         console.log("event time:", eventTime);
         console.log("event date:", eventDate);
@@ -17,6 +18,7 @@ export default function () {
     return (
         <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#2e026d] to-[#15162c] text-white">
             <div className="container flex flex-col items-center justify-center gap-12 px-4 py-16">
+                <Link href="./">Home</Link>
                 <h1>Lunch Invites page</h1>
                 <br></br>
                 <br></br>
