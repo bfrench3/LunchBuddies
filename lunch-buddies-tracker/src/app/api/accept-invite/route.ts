@@ -1,8 +1,8 @@
 import { db } from '~/server/db';
-
+import { invites } from 'src/app/api/store'
 export async function GET(req: Request) {
     const { searchParams } = new URL(req.url);
-    const inviteId = searchParams.get('invite');
+    const inviteId = searchParams.get('invite_id');
 
     if (!inviteId) {
         return new Response("Missing invite ID", { status: 400 });
@@ -31,5 +31,9 @@ export async function GET(req: Request) {
         }),
     ]);
 
-    return new Response("Invite accepted! Points awarded 🎉", { status: 200 });
+    return new Response("Invite accepted! Points awarded 🎉",
+        {
+            status: 200,
+            headers: { 'content-type': 'text/html' }
+        });
 }

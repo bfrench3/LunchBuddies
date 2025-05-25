@@ -20,7 +20,6 @@ model LunchInvite {
     date                    DateTime //time OF meeting
     sender  User    @relation("SentInvites", fields: [senderId], references: [id])
     receiver    User    @relation("ReceivedInvites", fields: [receiverId], references: [id])
-
 }
 
 // Necessary for Next auth
