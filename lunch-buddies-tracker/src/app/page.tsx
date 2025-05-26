@@ -17,7 +17,7 @@ export default async function Home() {
         {hasUser ? (
           <p>Welcome {(session as any).user.email}</p>
         ) : (
-          <a href="/signin">Sign in</a>
+          <a href="/signin" className="text-blue-600 underline">Sign in</a>
         )}
         <Link href="/leaderboard" className="text-blue-600 underline">
           View Leaderboard

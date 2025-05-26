@@ -27,6 +27,10 @@ export default function () {
 
             if (res.ok) {
                 alert("Invite sent successfully!");
+                setName('');
+                setInvitee('');
+                seteventDate('');
+                seteventTime('');
             } else {
                 alert(`Error: ${data.message}`);
             }

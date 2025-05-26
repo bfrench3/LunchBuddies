@@ -31,7 +31,7 @@ export async function GET(req: Request) {
         }),
     ]);
 
-    return new Response("Invite accepted! Points awarded 🎉",
+    return new Response(`Invite accepted! Points awarded`,
         {
             status: 200,
             headers: { 'content-type': 'text/html' }
