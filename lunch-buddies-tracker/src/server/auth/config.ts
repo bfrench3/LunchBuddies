@@ -3,6 +3,7 @@ import { type DefaultSession, type NextAuthOptions } from "next-auth";
 import EmailProvider from "next-auth/providers/email";
 import { db } from "~/server/db";
 import { Resend } from "resend";
+import { cookies } from "next/headers";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
@@ -48,4 +49,23 @@ export const authOptions: NextAuthOptions = {
   pages: {
     signIn: "/auth/signin",
   },
-};
+  events: {
+    async createUser(user) {
+      try {
+        const cookieStore = await cookies();
+        const name = cookieStore.get("pending_name")?.value;
+
+        if (name) {
+          await db.user.update({
+            where: { id: user.user.id },
+            data: { name },
+          });
+        }
+      } catch (error) {
+        console.error("Failed to update name in createUser:", error);
+      }
+    },
+  },
+}
+
+
