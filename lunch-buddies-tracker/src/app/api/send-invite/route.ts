@@ -21,7 +21,12 @@ export async function POST(req: Request) {
             status: 404,
             headers: { 'Content-Type': 'application/json' },
         });
-
+    }
+    if (sender?.id === receiver?.id) {
+        return new Response(JSON.stringify({ message: "Cannot invite yourself to lunch pal " }), {
+            status: 404,
+            headers: { 'Content-Type': 'application/json' }
+        });
     }
     const newInvite = await db.lunchInvite.create({
         data: {

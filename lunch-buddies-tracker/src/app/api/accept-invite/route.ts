@@ -11,7 +11,9 @@ export async function GET(req: Request) {
     const invite = await db.lunchInvite.findUnique({
         where: { id: inviteId },
     });
-
+    if (invite?.senderId === invite?.receiverId) {
+        return new Response("Cannot invite yourself to lunch buddy", { status: 400 })
+    }
     if (!invite || invite.status !== 'pending') {
         return new Response("Invalid or already accepted invite", { status: 400 });
     }
