@@ -20,4 +20,4 @@ BACKEND UNDERSTANDING
 config.ts is where our email function exists, this is where emails are sent using resend (locally now). and where the callback for the adding name is. 
 
 TODO NEXT
-1. 
+1. Make it so that invites need to be unique? or you get more points for a unique invite?

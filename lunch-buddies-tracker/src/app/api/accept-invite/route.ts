@@ -16,20 +16,45 @@ export async function GET(req: Request) {
         return new Response("Invalid or already accepted invite", { status: 400 });
     }
 
-    await db.$transaction([
-        db.lunchInvite.update({
-            where: { id: inviteId },
-            data: { status: 'accepted' },
-        }),
-        db.user.update({
-            where: { id: invite.senderId },
-            data: { points: { increment: 1 } },
-        }),
-        db.user.update({
-            where: { id: invite.receiverId },
-            data: { points: { increment: 1 } },
-        }),
-    ]);
+    const check = await db.lunchInvite.count({
+        where: {
+            senderId: invite.senderId,
+            receiverId: invite.receiverId
+        }
+    });
+
+    if (check === 1) {
+        await db.$transaction([
+            db.lunchInvite.update({
+                where: { id: inviteId },
+                data: { status: 'accepted' },
+            }),
+            db.user.update({
+                where: { id: invite.senderId },
+                data: { points: { increment: 2 } },
+            }),
+            db.user.update({
+                where: { id: invite.receiverId },
+                data: { points: { increment: 2 } },
+            }),
+        ]);
+    }
+    else {
+        await db.$transaction([
+            db.lunchInvite.update({
+                where: { id: inviteId },
+                data: { status: 'accepted' },
+            }),
+            db.user.update({
+                where: { id: invite.senderId },
+                data: { points: { increment: 1 } },
+            }),
+            db.user.update({
+                where: { id: invite.receiverId },
+                data: { points: { increment: 1 } },
+            }),
+        ]);
+    }
 
     return new Response(`Invite accepted! Points awarded`,
         {
