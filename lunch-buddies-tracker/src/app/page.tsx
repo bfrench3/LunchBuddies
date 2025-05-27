@@ -15,7 +15,7 @@ export default async function Home() {
         <h1>Welcome to LunchBuddies!</h1>
         <h2>Your hub for tracking your lunch partners!</h2>
         {hasUser ? (
-          <p>Welcome {(session as any).user.name}</p>
+          <p>Welcome {(session as any).user.name}!</p>
         ) : (
           <a href="/signin" className="text-blue-600 underline">Sign in</a>
         )}

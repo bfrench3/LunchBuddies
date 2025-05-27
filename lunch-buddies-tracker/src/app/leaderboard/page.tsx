@@ -4,6 +4,7 @@ import Link from "next/link";
 
 //query for finding top points in the database
 export default async function LeaderboardPage() {
+    let i = 1;
     const topUsers = await db.user.findMany({
         orderBy: { points: "desc" },
         take: 5,
@@ -20,10 +21,10 @@ export default async function LeaderboardPage() {
                 <h1 className="text-3xl font-bold mb-6">Leaderboard</h1>
                 <Link href="./">Home</Link>
                 <ul>
-                    {topUsers.map((user) => (
+                    {topUsers.map((user, i) => (
                         <li key={user.id} className="flex items-center gap-4 mb-4">
                             <div>
-                                <p className="font-semibold">{user.name ?? "Unnamed User"}</p>
+                                <p className="font-semibold">{i + 1}. {user.name ?? "Unnamed User"}</p>
                                 <p className="text-sm text-gray-500">{user.email}</p>
                             </div>
                             <div className="ml-auto font-bold">{user.points} pts</div>
