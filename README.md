@@ -4,16 +4,20 @@ This is an application for employees to track, schedule and log their paired lun
 
 
 DEV UNDERSTANDING
-1. The app enters at src/app/page.tsx. this is the frontend main page. gets session info from config.ts using boilerplate code. config.ts is for nextauth verifications via email
-2. if no user, there is a clickable element in it that redirects to the code in src/app/signin/page.tsx. this is the code that sends the user an 'email' to verify they are a user. still needs to get this code to interact with the database. 
-3. route.ts sends handlers for requests, kind of like a middleman for the communication between things.
-4. schema.prisma is our database layout. once emails start populating, everything will populate!
-5. when you enter another page.tsx (called via a route) the default export function gets invoked, 
-you dont have to explicitly call it anywhere
+
+default page.tsx has 3 files stemming from it
+signin, leaderboard and invites
+
+signin - has a form that sends that data to the backend service on submit, also stores a cookie for the name to be populated after the record. calls a sign in function - not ours, from a library. once the signin is completed, redirected to post-auth that is the temporary page for adding name to record, THEN gets sent to the home page.
+
+leaderboard - default export is a query that selects the 5 users with the highest points in the database and shows them dynamically. 
+
+invites - this is a page for sending invites, default export that on submit stores all the form information to the database via an api call in the lunchInvites table. 
 
 
+BACKEND UNDERSTANDING
+
+config.ts is where our email function exists, this is where emails are sent using resend (locally now). and where the callback for the adding name is. 
 
 TODO NEXT
-1. Get emails to send actually
-2. set up lunch invites / points
-3. leaderboards for points - DONE
+1. 

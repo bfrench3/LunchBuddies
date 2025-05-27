@@ -18,8 +18,8 @@ export default async function LeaderboardPage() {
     return (
         <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#2e026d] to-[#15162c] text-white">
             <div className="container flex flex-col items-center justify-center gap-12 px-4 py-16">
+                <Link href="./" className="text-blue-600 underline">Home</Link>
                 <h1 className="text-3xl font-bold mb-6">Leaderboard</h1>
-                <Link href="./">Home</Link>
                 <ul>
                     {topUsers.map((user, i) => (
                         <li key={user.id} className="flex items-center gap-4 mb-4">

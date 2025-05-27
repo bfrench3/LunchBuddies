@@ -1,5 +1,4 @@
 "use client";
-
 import { useState } from "react";
 import { signIn } from "next-auth/react";
 import Cookies from "js-cookie";
@@ -17,7 +16,6 @@ export default function SignInPage() {
             email,
             callbackUrl: "/post-auth", //go here once sign in is done
         });
-
     };
 
     return (

@@ -45,11 +45,11 @@ export default function () {
     return (
         <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#2e026d] to-[#15162c] text-white">
             <div className="container flex flex-col items-center justify-center gap-12 px-4 py-16">
-                <Link href="./">Home</Link>
-                <h1>Lunch Invites page</h1>
+                <Link href="./" className="text-blue-600 underline">Home</Link>
+                <h1 className="text-3xl font-bold mb-6">Leaderboard</h1>
                 <br></br>
                 <br></br>
-                <form onSubmit={handleSubmit}>
+                <form onSubmit={handleSubmit} >
                     <label htmlFor="name">Your name</label><br />
                     <input type="text" id="name" value={name} onChange={(e) => setName(e.target.value)} />
                     <br /><br />

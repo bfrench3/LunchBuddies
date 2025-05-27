@@ -4,3 +4,10 @@
   --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif,
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
+
+#name,
+#invitee,
+#eventDate,
+#eventTime {
+  border: solid 1px white;
+}
