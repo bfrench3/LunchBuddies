@@ -1,9 +1,20 @@
 import { db } from "~/server/db";
 import Link from "next/link";
+import type { Session } from "next-auth";
+import { getServerSession } from "next-auth/next";
+import { authOptions } from "~/server/auth/config";
+import { redirect } from "next/navigation";
+
 //this export function gets automatically invoked when this route is called, function doesnt have to be called
 
 //query for finding top points in the database
 export default async function LeaderboardPage() {
+    const session: Session | null = await getServerSession(authOptions);
+    //makes sure there is a user in session that isnt null
+    const hasUser = session && typeof session === "object" && "user" in session && session.user != null;
+    if (!hasUser) {
+        redirect('/signin');
+    }
     let i = 1;
     const topUsers = await db.user.findMany({
         orderBy: { points: "desc" },

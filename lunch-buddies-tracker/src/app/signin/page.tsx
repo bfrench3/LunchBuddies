@@ -32,7 +32,13 @@ export default function SignInPage() {
                         placeholder="Enter your email"
                     />
                     <br></br><br></br>
-                    <button type="submit">Sign in</button>
+                    <button
+                        type="submit"
+                        className="mt-4 px-6 py-2 rounded-xl bg-pink-600 hover:bg-pink-700 text-white font-semibold shadow-md transition duration-300"
+                    >
+                        Sign in
+                    </button>
+
                 </form>
             </div>
         </main>
