@@ -49,7 +49,7 @@ export default function InvitesClient({ session }: { session: any }) {
                     <label htmlFor="name">Your name</label><br />
                     <input type="text" id="name" value={name} onChange={(e) => setName(e.target.value)} />
                     <br /><br />
-                    <label htmlFor="invitee">Person to invite</label><br></br>
+                    <label htmlFor="invitee">Person's email to invite</label><br></br>
                     <input type="input" id="invitee" value={invitee} onChange={(e) => {
                         setInvitee(e.target.value)
                     }}></input>
@@ -69,5 +69,4 @@ export default function InvitesClient({ session }: { session: any }) {
             </div>
         </main>
     );
-
 }
